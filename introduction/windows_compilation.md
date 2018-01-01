@@ -5,21 +5,21 @@
 **WARNING: This build is not being tested for the moment. Note that it does not compile every plugins available in radare2 yet. Refer to the [Mingw32](#mingw32) build below for a more stable and complete build.**
 
 The most native way to compile radare2 under Windows is to use meson + msvc. First you need **python3** to be installed on your computer. Once this is done, you can install the meson build system using `pip3 install meson` (with Administrator privileges).
-Now navigate to your Python installation folder, and copy the `meson.py` from `.\Scripts` subfolder into your radare2 folder.
-
-Meson also requires Ninja. You can download it from [here](https://ninja-build.org/). Copy `ninja.exe` binary into your radare2 folder. Then run `meson.bat` and wait until compilation is done.
+Now you can build radare2 using the `sys\meson.py` script.
 
 #### Compiling
+
+**Note: The build script `sys\meson.py` is more oftenly updated than this documentation. If any information here is wrong refer to `sys\meson.py --help`.**
 
 * At first you will need to run `vsvarsall.bat` from the corresponding directory of your Visual Studio or Visual C++ Build Tools.
 In case of VS2015 it is located usually in `C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\` or
 in `C:\\Program Files (x86)\\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat`
 
-* Using **Ninja build system**: This is the easiest, simply run `meson.bat` and wait until the compilation is complete.
+* Using **Ninja build system**: You can download it from [here](https://ninja-build.org/). Copy `ninja.exe` binary into your radare2 folder. Then run `python sys\meson.py` and wait until compilation is done.
 
-* Using **Visual Studio**: If you want to work on radare2 in Visual Studio, you can simply run the command `meson.bat -p` which will generate a Visual Studio 2015 project. Then you can load it from `build\radare2.sln`.
+* Using **Visual Studio**: If you want to work on radare2 in Visual Studio, you can simply run the command `python meson.py --project --backend vs2015` which will generate a Visual Studio 2015 project. Then you can load it from `build\radare2.sln`.
 
-* Using **MSBuild**: Call `meson.bat --msbuild`
+* Using **MSBuild**: Call `python sys\meson.py --backend vs2015`
 
 In any case, everything is generated in the `build` folder by default, except for the sdb files generation process.
 
